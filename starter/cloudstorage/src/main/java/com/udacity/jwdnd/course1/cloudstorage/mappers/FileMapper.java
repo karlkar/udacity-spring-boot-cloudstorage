@@ -12,7 +12,7 @@ public interface FileMapper {
     @Options(useGeneratedKeys = true, keyProperty = "fileId")
     int insert(FileData fileData);
 
-    @Select("SELECT * FROM FILES WHERE userId = #{userId} filename = #{filename}")
+    @Select("SELECT * FROM FILES WHERE userId = #{userId} AND filename = #{filename}")
     FileData getFileByName(int userId, String filename);
 
     @Select("SELECT * FROM FILES WHERE userId = #{userId}")

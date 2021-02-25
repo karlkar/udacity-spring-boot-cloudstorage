@@ -132,12 +132,16 @@ public class HomeController {
         if (!fileService.isNameAllowed(userId, filename)) {
             errorMsg = "Name already exists!";
         } else {
-            final String contentType = fileUpload.getContentType();
-            final String size = String.valueOf(fileUpload.getSize());
-            final byte[] data = fileUpload.getBytes();
-            final int fileId = fileService.insert(new FileData(null, filename, contentType, size, userId, data));
-            if (fileId < 0) {
-                errorMsg = "Couldn't insert file";
+            try {
+                final String contentType = fileUpload.getContentType();
+                final String size = String.valueOf(fileUpload.getSize());
+                final byte[] data = fileUpload.getBytes();
+                final int fileId = fileService.insert(new FileData(null, filename, contentType, size, userId, data));
+                if (fileId < 0) {
+                    errorMsg = "Couldn't insert file";
+                }
+            } catch (IOException ex) {
+                errorMsg = "Input/Output error";
             }
         }
         model.addAttribute("errorMsg", errorMsg);
