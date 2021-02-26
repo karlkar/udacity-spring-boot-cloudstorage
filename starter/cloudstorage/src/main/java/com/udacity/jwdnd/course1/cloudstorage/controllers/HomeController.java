@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.SizeLimitExceededException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -125,7 +126,7 @@ public class HomeController {
     }
 
     @PostMapping("/file-upload")
-    public String fileUpload(Authentication authentication, @RequestParam MultipartFile fileUpload, Model model) throws IOException {
+    public String fileUpload(Authentication authentication, @RequestParam MultipartFile fileUpload, Model model) {
         String errorMsg = null;
         final int userId = userService.findUserByName(authentication.getName()).getUserId();
         final String filename = fileUpload.getOriginalFilename();

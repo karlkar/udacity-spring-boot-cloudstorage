@@ -154,7 +154,7 @@ class CloudStorageApplicationTests {
 
 		homePage = new HomePage(driver);
 		homePage.logout();
-		new WebDriverWait(driver, 5).until(ExpectedConditions.urlToBe(baseUrl + "login"));
+		new WebDriverWait(driver, 5).until(ExpectedConditions.urlToBe(baseUrl + "login?logout"));
 	}
 
 	@Test
@@ -163,7 +163,7 @@ class CloudStorageApplicationTests {
 
 		homePage = new HomePage(driver);
 		homePage.logout();
-		new WebDriverWait(driver, 5).until(ExpectedConditions.urlToBe(baseUrl + "login"));
+		new WebDriverWait(driver, 5).until(ExpectedConditions.urlToBe(baseUrl + "login?logout"));
 
 		driver.get(baseUrl + "home");
 		Assertions.assertEquals(baseUrl + "login", driver.getCurrentUrl());
